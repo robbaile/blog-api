@@ -3,9 +3,8 @@ var router = express.Router();
 const AWS = require('aws-sdk');
 const config = require('../config');
 const uuidv1 = require('uuid/v1');
-const { IdentityStore } = require('aws-sdk');
 
-/* GET home page. */
+// GET blogs
 router.get('/', function(req, res, next) {
     AWS.config.update(config.aws_remote_config);
 
@@ -33,6 +32,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
+// GET specific blog
 router.get('/:id?', function(req, res, next) {
     AWS.config.update(config.aws_remote_config);
 
@@ -63,10 +63,26 @@ router.get('/:id?', function(req, res, next) {
     });
 });
 
+// POST new blog
 router.post('/', function(req, res, next) {
     // Add new Blog to database
+    AWS.config.update(config.aws_remote_config);
 
-    res.send('Good request');
-})
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    docClient.put(req.body.blog, function (err, data) {
+        if (err) {
+            console.log(err)
+            res.send({
+                success: false,
+                message: err
+            });
+        } else {
+            res.send({
+                success: true,
+            });
+        }
+    })
+});
 
 module.exports = router;
