@@ -6,12 +6,19 @@ const uuidv1 = require('uuid/v1');
 
 // GET blogs
 router.get('/', function(req, res, next) {
-    AWS.config.update(config.aws_remote_config);
+    AWS.config.update(
+        {
+            accessKeyId: process.env.ACCESS_KEY_ID, 
+            secretAccessKey: process.env.SECRET_ACCESS_KEY,	
+            region: process.env.REGION 
+        } 
+        || config.aws_remote_config
+    );
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     const params = {
-        TableName: config.aws_table_name
+        TableName: process.env.AWS_TABLE_NAME || config.aws_table_name
     };
 
     docClient.scan(params, function (err, data) {
