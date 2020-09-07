@@ -1,21 +1,29 @@
 {
-  "name": "api",
-  "version": "0.0.0",
-  "private": true,
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robbaile/blog-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robbaile/blog-api/issues"
+  },
+  "homepage": "https://github.com/robbaile/blog-api#readme",
   "dependencies": {
-    "aws-sdk": "^2.739.0",
-    "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "^1.11.0",
-    "morgan": "~1.9.1"
+    "@aws-cdk/aws-apigateway": "*",
+    "@aws-cdk/aws-dynamodb": "*",
+    "@aws-cdk/aws-lambda": "*",
+    "@aws-cdk/core": "*"
   },
-  "engines": {
-    "node": "12.x"
+  "devDependencies": {
+    "@types/node": "^10.17.0",
+    "typescript": "~3.7.2"
   }
 }
