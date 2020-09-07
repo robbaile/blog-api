@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 const AWS = require('aws-sdk');
-const config = require('../config');
+const config = process.env.ENVIRONMENT == 'PROD' ? "Prod" : require('../config');
 const uuidv1 = require('uuid/v1');
 
 // GET blogs
 router.get('/', function(req, res, next) {
-    const options = process.env.ACCESS_KEY_ID && process.env.SECRET_ACCESS_KEY && process.env.REGION ? 
+    const options = config == 'PROD' ? 
         {
             accessKeyId: process.env.ACCESS_KEY_ID, 
             secretAccessKey: process.env.SECRET_ACCESS_KEY,	

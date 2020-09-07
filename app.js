@@ -4,9 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const AWS = require('aws-sdk');
-const config = require('./config');
-const uuidv1 = require('uuid/v1');
 
 // Routes to import
 const indexRouter = require('./routes/index');
