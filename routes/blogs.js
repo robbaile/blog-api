@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
             accessKeyId: process.env.ACCESS_KEY_ID, 
             secretAccessKey: process.env.SECRET_ACCESS_KEY,	
             region: process.env.REGION 
-        } : config.aws_local_config;
+        } : config.aws_remote_config;
 
     AWS.config.update(options);
 
